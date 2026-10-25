@@ -1,0 +1,37 @@
+# Paths are relative to project_minimal. null rank = language 16 / action expert 32.
+robot: bimanual
+cuda_visible_devices: null
+model: pi05
+method: full
+exp_name: bimanual_pi05_full_example
+action_format: delta_joint_absolute_gripper
+lora_rank: null
+action_horizon: 50
+batch_size: 8
+num_train_steps: 40000
+save_interval: 1000
+log_interval: 20
+num_workers: 2
+fsdp_devices: 1
+seed: 42
+lr_schedule:
+  warmup_steps: 1000
+  peak_lr: 1.0e-05
+  decay_steps: 40000
+  decay_lr: 1.0e-06
+optimizer:
+  b1: 0.9
+  b2: 0.95
+  eps: 1.0e-08
+  clip_gradient_norm: 1.0
+ema_decay: 0.99
+resume: false
+overwrite: false
+no_wandb: true
+model_cache_dir: models
+data_dir: datasets/lerobot
+output_dir: checkpoints
+assets_dir: assets
+base_params_path: null
+data_collection:
+  dataset_repo_id: local/dnp1_20261015

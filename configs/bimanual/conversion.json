@@ -1,0 +1,35 @@
+{
+  "robot": "bimanual",
+  "format": "piper_dual_state_mcap_v2",
+  "fps": 20,
+  "joint_names": [
+    "joint1",
+    "joint2",
+    "joint3",
+    "joint4",
+    "joint5",
+    "joint6",
+    "gripper"
+  ],
+  "robot_topics": {
+    "right_state": "/followerR/current_joint_obs",
+    "right_action": "/followerR/applied_joint_cmd",
+    "left_state": "/followerL/current_joint_obs",
+    "left_action": "/followerL/applied_joint_cmd"
+  },
+  "camera_topics": {
+    "front": "/camera/front/compressed",
+    "wrist1": "/camera/wrist1/compressed",
+    "wrist2": "/camera/wrist2/compressed"
+  },
+  "units": {
+    "joints": "rad",
+    "gripper": "m"
+  },
+  "camera_mapping": {
+    "front": "front",
+    "wrist1": "left_wrist",
+    "wrist2": "right_wrist"
+  },
+  "evidence": "Inspected dnp1_20261015/20261015_165042 MCAP and meta.json; existing wrist1=left mapping retained"
+}

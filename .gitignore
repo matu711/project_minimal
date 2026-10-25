@@ -1,0 +1,80 @@
+
+# Large local data and model outputs.
+/datasets/
+/checkpoints/
+/checkpoint_exports/
+/transfer_checkpoints/
+/models/
+/logs/
+*.zip
+
+# Local environments, runs, and derived assets.
+**/.venv/
+**/.env
+**/.env.*
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+**/wandb/
+**/logs/
+/openpi/assets/
+
+# Generated binary data and model weights.
+*.py[cod]
+*.npz
+*.npy
+*.parquet
+*.mp4
+*.avi
+*.mov
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Generated evaluation outputs.
+/piper_pi0/results/
+
+# Shared tuning outputs and caches.
+/exports/
+/assets/
+/.cache/
+*.mcap
+*.tar.gz
+*.sha256
+
+# Initial reference snapshots; runtime code was copied into conversion/training.
+/piper_pi0/
+/openpi/examples/
+/openpi/third_party/
+/openpi/docs/
+/openpi/custom_scripts/*
+!/openpi/custom_scripts/train.py
+/openpi/scripts/*
+!/openpi/scripts/__init__.py
+!/openpi/scripts/compute_norm_stats.py
+/README_LeRobot_conversion.md
+/README_PiPER_finetuning.md
+/README_SHARE.md
+/SHARE_MANIFEST.json
+/pi05_*_2026*.md
+
+# Independent GitHub snapshot exclusions.
+/datasets/
+/checkpoints/
+/models/
+/assets/
+/exports/
+/logs/
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+credentials.json
+service-account*.json

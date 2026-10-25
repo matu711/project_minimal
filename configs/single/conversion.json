@@ -1,0 +1,27 @@
+{
+  "robot": "single",
+  "format": "piper_raw_fixed_rate_synced_v5",
+  "fps": 20,
+  "joint_names": [
+    "joint1",
+    "joint2",
+    "joint3",
+    "joint4",
+    "joint5",
+    "joint6",
+    "gripper"
+  ],
+  "robot_topics": {
+    "state": "/follower/current_joint_obs",
+    "action": "/follower/applied_joint_cmd"
+  },
+  "camera_topics": {
+    "front": "/camera/front/compressed",
+    "wrist": "/camera/wrist/compressed"
+  },
+  "units": {
+    "joints": "rad",
+    "gripper": "m"
+  },
+  "evidence": "Inspected 260826_50epi/20260825_224317 MCAP and recorder dataset_meta.json"
+}

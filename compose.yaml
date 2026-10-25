@@ -1,0 +1,34 @@
+name: project-minimal-tuning
+services:
+  tuning:
+    image: tuning:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Compose generates project-minimal-tuning-tuning-1; no legacy names are used.
+    working_dir: /workspace/project_minimal
+    user: "${TUNING_UID:-1000}:${TUNING_GID:-1000}"
+    init: true
+    command: ["sleep", "infinity"]
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    shm_size: "16gb"
+    environment:
+      HOME: /workspace/project_minimal/.cache/tuning
+      HF_HOME: /workspace/project_minimal/.cache/tuning/huggingface
+      HF_LEROBOT_HOME: /workspace/project_minimal/datasets/lerobot
+      OPENPI_DATA_HOME: /workspace/project_minimal/models
+      OPENPI_ROOT: /opt/project_minimal/openpi
+      XLA_PYTHON_CLIENT_PREALLOCATE: "false"
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility,video
+      WANDB_MODE: disabled
+    volumes:
+      - .:/workspace/project_minimal
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
