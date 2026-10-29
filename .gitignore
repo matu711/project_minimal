@@ -78,3 +78,14 @@ id_rsa
 id_ed25519
 credentials.json
 service-account*.json
+
+# Local validation, experiment configs and private environment state.
+/validation/
+/configs/*/dnp*.yaml
+/.agents/
+/.codex/
+/.aws/
+/.ssh/
+/.config/
+/core
+core.*

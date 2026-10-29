@@ -304,4 +304,4 @@ def main(config: _config.TrainConfig):
 
 
 if __name__ == "__main__":
-    main(_config.cli())
+    raise SystemExit("Use sh scripts/train.sh --config <training.yaml>")

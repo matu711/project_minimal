@@ -11,8 +11,8 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = Path('/opt/project_minimal') if Path('/opt/project_minimal/openpi').is_dir() else ROOT
-sys.path[:0] = [str(ROOT), str(SOURCE / 'openpi'), str(SOURCE / 'openpi/src')]
+SOURCE = ROOT
+sys.path[:0] = [str(ROOT), str(SOURCE / 'openpi'), str(SOURCE / 'openpi/src'), str(SOURCE / 'openpi/packages/openpi-client/src')]
 
 import yaml
 

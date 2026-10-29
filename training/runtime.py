@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-OPENPI_ROOT = Path(os.environ.get("OPENPI_ROOT", "/opt/project_minimal/openpi" if Path("/opt/project_minimal/openpi").is_dir() else str(ROOT / "openpi")))
+OPENPI_ROOT = Path(os.environ.get("OPENPI_ROOT", str(ROOT / "openpi")))
 
 def load_trainer():
     path = OPENPI_ROOT / "custom_scripts/train.py"

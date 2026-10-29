@@ -2,7 +2,6 @@
 name = "openpi"
 version = "0.1.0"
 description = "Physical Intelligence open source repo"
-readme = "README.md"
 requires-python = ">=3.11,<3.12"
 license = { file = "LICENSE" }
 dependencies = [
@@ -13,7 +12,6 @@ dependencies = [
     "flatbuffers>=24.3.25",
     "flax==0.10.2",
     "fsspec[gcs]>=2024.6.0",
-    "gym-aloha>=0.1.1",
     "imageio>=2.36.1",
     "jax[cuda12]==0.5.3",
     "jaxtyping==0.2.36",
@@ -38,7 +36,6 @@ dependencies = [
     "transformers==4.53.2",
     "rich>=14.0.0",
     "polars>=1.30.0",
-    "robosuite>=1.4.1",
 ]
 
 

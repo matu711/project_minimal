@@ -6,7 +6,6 @@
 !openpi/
 openpi/*
 !openpi/pyproject.toml
-!openpi/README.md
 !openpi/LICENSE*
 !openpi/src/
 !openpi/src/**
@@ -29,3 +28,6 @@ openpi/custom_scripts/*
 !configs/**
 **/__pycache__
 **/*test*.py
+
+# Experiment-specific local configs are not part of the shared image.
+configs/*/dnp*.yaml

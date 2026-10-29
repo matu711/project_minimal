@@ -19,7 +19,7 @@ services:
       HF_HOME: /workspace/project_minimal/.cache/tuning/huggingface
       HF_LEROBOT_HOME: /workspace/project_minimal/datasets/lerobot
       OPENPI_DATA_HOME: /workspace/project_minimal/models
-      OPENPI_ROOT: /opt/project_minimal/openpi
+      OPENPI_ROOT: /workspace/project_minimal/openpi
       XLA_PYTHON_CLIENT_PREALLOCATE: "false"
       NVIDIA_DRIVER_CAPABILITIES: compute,utility,video
       WANDB_MODE: disabled

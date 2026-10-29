@@ -1,5 +1,4 @@
 import logging
-import os
 import pathlib
 from typing import Any
 
@@ -38,23 +37,12 @@ def create_trained_policy(
         pytorch_device: Device to use for PyTorch models (e.g., "cpu", "cuda", "cuda:0").
                       If None and is_pytorch=True, will use "cuda" if available, otherwise "cpu".
 
-    Note:
-        The function automatically detects whether the model is PyTorch-based by checking for the
-        presence of "model.safensors" in the checkpoint directory.
     """
     repack_transforms = repack_transforms or transforms.Group()
     checkpoint_dir = download.maybe_download(str(checkpoint_dir))
 
-    # Check if this is a PyTorch model by looking for model.safetensors
-    weight_path = os.path.join(checkpoint_dir, "model.safetensors")
-    is_pytorch = os.path.exists(weight_path)
-
-    logging.info("Loading model...")
-    if is_pytorch:
-        model = train_config.model.load_pytorch(train_config, weight_path)
-        model.paligemma_with_expert.to_bfloat16_for_selected_params("bfloat16")
-    else:
-        model = train_config.model.load(_model.restore_params(checkpoint_dir / "params", dtype=jnp.bfloat16))
+    logging.info("Loading JAX model...")
+    model = train_config.model.load(_model.restore_params(checkpoint_dir / "params", dtype=jnp.bfloat16))
     data_config = train_config.data.create(train_config.assets_dirs, train_config.model)
     if norm_stats is None:
         # We are loading the norm stats from the checkpoint instead of the config assets dir to make sure
@@ -62,15 +50,6 @@ def create_trained_policy(
         if data_config.asset_id is None:
             raise ValueError("Asset id is required to load norm stats.")
         norm_stats = _checkpoints.load_norm_stats(checkpoint_dir / "assets", data_config.asset_id)
-
-    # Determine the device to use for PyTorch models
-    if is_pytorch and pytorch_device is None:
-        try:
-            import torch
-
-            pytorch_device = "cuda" if torch.cuda.is_available() else "cpu"
-        except ImportError:
-            pytorch_device = "cpu"
 
     return _policy.Policy(
         model,
@@ -95,6 +74,6 @@ def create_trained_policy(
         ],
         sample_kwargs=sample_kwargs,
         metadata=train_config.policy_metadata,
-        is_pytorch=is_pytorch,
-        pytorch_device=pytorch_device if is_pytorch else None,
+        is_pytorch=False,
+        pytorch_device=None,
     )
