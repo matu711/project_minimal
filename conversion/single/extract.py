@@ -6,8 +6,6 @@ Only strict synchronization is supported: no synthetic images or joint values.
 from __future__ import annotations
 import io
 import json
-from pathlib import Path
-import hashlib
 import uuid
 import numpy as np
 from PIL import Image

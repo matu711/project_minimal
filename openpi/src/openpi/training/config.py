@@ -5,7 +5,7 @@ from collections.abc import Sequence
 import dataclasses
 import logging
 import pathlib
-from typing import Any, Literal, Protocol, TypeAlias
+from typing import Any, Protocol, TypeAlias
 
 import etils.epath as epath
 import flax.nnx as nnx

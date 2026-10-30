@@ -1,7 +1,6 @@
 """Small real-writer fixtures for both robot layouts."""
 import csv
 import json
-from pathlib import Path
 import numpy as np
 from PIL import Image
 from conversion.pipeline import robot_spec
@@ -36,10 +35,3 @@ def record(root, robot='bimanual', count=4):
                 entry[camera+'_image'] = name
             writer.writerow(entry)
     return path
-
-
-def change_npz(path, **updates):
-    with np.load(path/'data.npz') as source:
-        values = {k: source[k] for k in source.files}
-    values.update(updates)
-    np.savez(path/'data.npz', **values)

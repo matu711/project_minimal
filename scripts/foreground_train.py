@@ -3,7 +3,7 @@
 Run inside the existing tuning container. No detach/nohup/background training.
 The parent stays attached, waits for training, and Ctrl-C reaches the child.
 """
-import argparse,datetime,os,pathlib,subprocess,sys,threading
+import argparse,datetime,pathlib,subprocess,sys,threading
 import yaml
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--config',required=True,type=pathlib.Path);a=p.parse_args()

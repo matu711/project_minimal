@@ -1,11 +1,7 @@
 from collections.abc import Sequence
-import logging
-import pathlib
 import time
 from typing import Any, TypeAlias
 
-import flax
-import flax.traverse_util
 import jax
 import jax.numpy as jnp
 import numpy as np
@@ -108,28 +104,3 @@ class Policy(BasePolicy):
     @property
     def metadata(self) -> dict[str, Any]:
         return self._metadata
-
-
-class PolicyRecorder(_base_policy.BasePolicy):
-    """Records the policy's behavior to disk."""
-
-    def __init__(self, policy: _base_policy.BasePolicy, record_dir: str):
-        self._policy = policy
-
-        logging.info(f"Dumping policy records to: {record_dir}")
-        self._record_dir = pathlib.Path(record_dir)
-        self._record_dir.mkdir(parents=True, exist_ok=True)
-        self._record_step = 0
-
-    @override
-    def infer(self, obs: dict) -> dict:  # type: ignore[misc]
-        results = self._policy.infer(obs)
-
-        data = {"inputs": obs, "outputs": results}
-        data = flax.traverse_util.flatten_dict(data, sep="/")
-
-        output_path = self._record_dir / f"step_{self._record_step}"
-        self._record_step += 1
-
-        np.save(output_path, np.asarray(data))
-        return results

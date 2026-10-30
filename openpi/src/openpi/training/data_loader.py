@@ -6,7 +6,6 @@ import typing
 from typing import Literal, Protocol, SupportsIndex, TypeVar
 
 import jax
-import jax.numpy as jnp
 import lerobot.common.datasets.lerobot_dataset as lerobot_dataset
 import numpy as np
 import torch
